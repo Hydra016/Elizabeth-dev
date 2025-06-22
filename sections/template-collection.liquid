@@ -1,0 +1,80 @@
+<div class="px-4 py-8">
+    <a href="{{ routes.collections_url }}" class="text-base text-gray-500 hover:underline block text-center my-4">{{
+        section.settings.go_back }}</a>
+    {% paginate collection.products by section.settings.product_limit%}
+    <h1 class="text-3xl text-center">{{ collection.title }}</h1>
+
+    <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {% for product in collection.products %}
+            {% render 'product-card', product: product %}
+            {% else %}
+            {% if section.settings.no_collections == blank %}
+            {% assign no_collections = 'general.Collection.no_collections' | t %}
+            {% else %}
+            {% assign no_collections = section.settings.no_collections%}
+            {% endif %}
+            <p>{{ no_collections }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% render 'pagination', pagination: paginate %}
+    {% endpaginate %}
+</div>
+
+
+{% schema %}
+{
+"name": "Collections",
+"settings": [
+{
+"type": "number",
+"id": "product_limit",
+"label": "Product limit",
+"default": 12
+},
+{
+"type": "text",
+"id": "no_collections",
+"label": "No Collections Text",
+},
+{
+"type": "checkbox",
+"id": "show_vendor",
+"label": "Show Vendor",
+"default": true
+},
+{
+"type": "number",
+"id": "transition_speed",
+"label": "Transition Speed",
+"default": 1000
+},
+{
+"type": "text",
+"id": "go_back",
+"label": "Go Back Text",
+"default": "Back to the collections"
+}
+],
+"blocks": [
+{
+"type": "product_title",
+"name": "Product Title"
+},
+{
+"type": "product_vendor",
+"name": "Product Vendor"
+},
+{
+"type": "product_price",
+"name": "Product Price"
+},
+{
+"type": "product_image",
+"name": "Product Image"
+}
+]
+}
+{% endschema %}

@@ -1,0 +1,1 @@
+{"sections":{"template":{"type":"template-collection","blocks":{"title":{"type":"product_title","settings":{}},"vendor":{"type":"product_vendor","settings":{}},"price":{"type":"product_price","settings":{}},"image":{"type":"product_image","settings":{}}},"block_order":["image","title","vendor","price"],"settings":{}}},"order":["template"]}

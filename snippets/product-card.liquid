@@ -1,0 +1,34 @@
+<div class="w-full py-6 px-3">
+    <div class="obrder bg-white shadow-lg rounded-lg overflow-hidden">
+        {% for block in section.blocks %}
+        {% case block.type %}
+        {% when 'product_image' %}
+        <a href="{{ product.url }}">
+            {% if product.featured_image %}
+            <div class="h-80 overflow-hidden">
+                <img class="w-full h-full object-cover transition duration-{{ section.settings.transition_speed }} ease-in-out hover:scale-105 transform"
+                    src="{{ product.featured_image |  img_url: 'medium' }}" alt="{{ product.title }}">
+            </div>
+            {% else %}
+            {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-cover bg-gray-100' }}
+            {% endif %}
+        </a>
+        <div class="flex flex-col p-4">
+            {% when 'product_vendor' %}
+            <span class="text-sm text-gray-400">
+                {% if section.settings.show_vendor %}
+                {{ product.vendor }}
+                {% endif %}
+            </span>
+            {% when 'product_title' %}
+            <a class="text-gray-700 uppercase font-medium" href="{{ product.url }}">{{ product.title }}</a>
+            {% when 'product_price' %}
+            <p class="text-gray-500">{{ product.price | money }}</p>
+        </div>
+        {% else %}
+        {% endcase %}
+        {% endfor %}
+        <div class="flex flex-col p-4">
+        </div>
+    </div>
+</div>

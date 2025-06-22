@@ -1,0 +1,78 @@
+<div class="flex flex-col items-center my-8">
+    {% if section.settings.title == blank %}
+    {% assign title = 'general.Index.featured_collections' | t %}
+    {% else %}
+    {% assign title = section.settings.title %}
+    {% endif %}
+    <h1 class="text-center text-3xl">
+        {{ title }}
+    </h1>
+
+    <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            {% for product in section.settings.featured_collection.products limit: section.settings.products_limit %}
+            {% render 'product-card', product: product %}
+            {% else %}
+            {% for item in (1..4) %}
+            {% render 'product-card-placeholder' %}
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+{
+"name": "Featured Collection",
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Title"
+},
+{
+"type": "collection",
+"id": "featured_collection",
+"label": "Collection"
+},
+{
+"type": "checkbox",
+"id": "show_vendor",
+"label": "Show Vendor",
+"default": true
+},
+{
+"type": "range",
+"id": "products_limit",
+"label": "Product Limit",
+"default": 4,
+"min": 4,
+"max": 12
+}
+],
+"blocks": [
+{
+"type": "product_title",
+"name": "Product Title"
+},
+{
+"type": "product_vendor",
+"name": "Product Vendor"
+},
+{
+"type": "product_price",
+"name": "Product Price"
+},
+{
+"type": "product_image",
+"name": "Product Image"
+}
+],
+"presets": [
+{
+"name": "Featured Collection"
+}
+]
+}
+{% endschema %}
