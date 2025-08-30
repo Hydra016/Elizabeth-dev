@@ -9,6 +9,15 @@
  */
 {
   "current": {
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "shop_name": "Haiders dev app",
+          "menu": "main-menu"
+        }
+      }
+    },
     "content_for_index": [],
     "blocks": {
       "18228966181090706294": {
@@ -16,6 +25,14 @@
         "disabled": false,
         "settings": {
           "storefrontAccessToken": ""
+        }
+      },
+      "13777399639762272419": {
+        "type": "shopify://apps/easy-upsell/blocks/star_rating/e813c5db-ba0e-48aa-97c4-c6e728d6da2a",
+        "disabled": false,
+        "settings": {
+          "product": "",
+          "colour": "#ff0000"
         }
       }
     }
